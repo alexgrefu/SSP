@@ -1,0 +1,149 @@
+﻿body
+{
+
+background: #2c2721 url(../Images/background.gif) repeat-x;
+font-family:Tahoma;
+font-size:12px;
+}
+
+h3              
+{ 
+    font-size: 1.17em; 
+    margin: 1em 0 
+}
+
+input
+{
+    margin:0;
+}
+
+#main
+{
+	margin: auto;
+	width: 900px;
+
+	padding: 10px;
+	background: #ffffff;
+	overflow: auto;
+}
+
+
+#header-container
+{
+    width:880px;
+}
+
+#header-logo
+{
+    width:210px;
+    height:130px;
+    float:left;
+}
+
+#header-logo img
+{
+    border:none; 
+    margin-top:15px;
+    width:200px;
+}
+
+#header-search
+{
+    width:630px; 
+    height:50px;
+    padding-top:80px;
+    padding-left:20px;
+    margin-left:210px; 
+    background:white url(../Images/search-bg.gif) no-repeat;
+}
+
+#search-box
+{
+    width:500px;
+    height:30px;
+    background:white url(../Images/searchbox.jpg) no-repeat;
+    position:relative;
+    float:left;
+}
+
+#header-search .search-textbox
+{
+    width:460px;
+    height:28px;
+    top:5px;
+    left:35px;
+    border:0px; /*important*/
+    background-color:transparent; /*important*/
+    position:absolute;
+}
+
+#header-search .search-button
+{
+    width:60px;
+}
+
+
+a:link
+{
+    color:#0287B0;
+}
+
+a:hover
+{
+    color:#D44A00;
+}
+
+a:visited
+{
+    color:#0287B0;
+}
+
+.search-result-header
+{
+    background-color:White;
+    background-image:url(../Images/hd-bg_02.jpg);
+    background-repeat:repeat-x;
+    color:#1C3750; 
+    height:24px;    
+    padding:5px; 
+    margin-bottom:0; 
+    margin-top:0;
+    cursor:pointer;
+    border:solid 1px #1C3750;
+}
+.search-result-header img
+{
+    float:left;
+    margin-right:2px;
+   
+}
+.search-result-header b
+{
+    line-height:24px;
+}
+
+.search-result-content
+{
+    border-bottom:solid 1px #1C3750;
+    border-left:solid 1px #1C3750;
+    border-right:solid 1px #1C3750;
+   
+    margin-top:0; 
+    padding:5px; 
+    max-height:500px; 
+    overflow:auto;
+    height:expression( this.scrollHeight > 449 ? "500px" : "auto" );
+}
+
+#dialogContainer
+{
+    max-height:500px; 
+    overflow:auto;
+    height:expression( this.scrollHeight > 449 ? "500px" : "auto" );
+}
+
+#ctl00_cphMain_tooltipItem
+{
+    display:none;
+}
+    

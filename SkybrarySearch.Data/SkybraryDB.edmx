@@ -1,0 +1,751 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SkyModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SkyModelStoreContainer">
+          <EntitySet Name="chapter" EntityType="SkyModel.Store.chapter" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="content" EntityType="SkyModel.Store.content" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="content_definition" EntityType="SkyModel.Store.content_definition" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="definition" EntityType="SkyModel.Store.definition" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="document" EntityType="SkyModel.Store.document" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="image" EntityType="SkyModel.Store.image" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="note" EntityType="SkyModel.Store.note" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="paragraph" EntityType="SkyModel.Store.paragraph" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="table" EntityType="SkyModel.Store.table" store:Type="Tables" Schema="sky" />
+          <EntitySet Name="table_cell" EntityType="SkyModel.Store.table_cell" store:Type="Tables" Schema="sky" />
+          <AssociationSet Name="fk_chapter_content" Association="SkyModel.Store.fk_chapter_content">
+            <End Role="content" EntitySet="content" />
+            <End Role="chapter" EntitySet="chapter" />
+          </AssociationSet>
+          <AssociationSet Name="fk_chapter_document_id" Association="SkyModel.Store.fk_chapter_document_id">
+            <End Role="document" EntitySet="document" />
+            <End Role="chapter" EntitySet="chapter" />
+          </AssociationSet>
+          <AssociationSet Name="fk_content_definition_content_id" Association="SkyModel.Store.fk_content_definition_content_id">
+            <End Role="content" EntitySet="content" />
+            <End Role="content_definition" EntitySet="content_definition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_content_definition_definition_id" Association="SkyModel.Store.fk_content_definition_definition_id">
+            <End Role="definition" EntitySet="definition" />
+            <End Role="content_definition" EntitySet="content_definition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_definition_content" Association="SkyModel.Store.fk_definition_content">
+            <End Role="content" EntitySet="content" />
+            <End Role="definition" EntitySet="definition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_image_content" Association="SkyModel.Store.fk_image_content">
+            <End Role="content" EntitySet="content" />
+            <End Role="image" EntitySet="image" />
+          </AssociationSet>
+          <AssociationSet Name="fk_note_content" Association="SkyModel.Store.fk_note_content">
+            <End Role="content" EntitySet="content" />
+            <End Role="note" EntitySet="note" />
+          </AssociationSet>
+          <AssociationSet Name="fk_paragraph_chapter_id" Association="SkyModel.Store.fk_paragraph_chapter_id">
+            <End Role="chapter" EntitySet="chapter" />
+            <End Role="paragraph" EntitySet="paragraph" />
+          </AssociationSet>
+          <AssociationSet Name="fk_paragraph_content" Association="SkyModel.Store.fk_paragraph_content">
+            <End Role="content" EntitySet="content" />
+            <End Role="paragraph" EntitySet="paragraph" />
+          </AssociationSet>
+          <AssociationSet Name="fk_table_cell_content_id" Association="SkyModel.Store.fk_table_cell_content_id">
+            <End Role="content" EntitySet="content" />
+            <End Role="table_cell" EntitySet="table_cell" />
+          </AssociationSet>
+          <AssociationSet Name="fk_table_cell_table_id" Association="SkyModel.Store.fk_table_cell_table_id">
+            <End Role="table" EntitySet="table" />
+            <End Role="table_cell" EntitySet="table_cell" />
+          </AssociationSet>
+          <AssociationSet Name="fk_table_content" Association="SkyModel.Store.fk_table_content">
+            <End Role="content" EntitySet="content" />
+            <End Role="table" EntitySet="table" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="chapter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="content_id" Type="int" />
+          <Property Name="document_id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="last_changed" Type="timestamp" Precision="0" />
+          <Property Name="order_in_document" Type="int" Nullable="false" />
+          <Property Name="page" Type="varchar" MaxLength="250" />
+          <Property Name="subtitle" Type="varchar" MaxLength="250" />
+          <Property Name="title" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="content">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="content" Type="text" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="content_definition">
+          <Key>
+            <PropertyRef Name="content_id" />
+            <PropertyRef Name="definition_id" />
+          </Key>
+          <Property Name="content_id" Type="int" Nullable="false" />
+          <Property Name="definition_id" Type="int" Nullable="false" />
+          <Property Name="page" Type="varchar" MaxLength="250" />
+          <Property Name="position_in_content" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="definition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="content_id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="term" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="document">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="group_name" Type="varchar" MaxLength="250" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="last_changed" Type="timestamp" Precision="0" />
+          <Property Name="order_in_group" Type="int" Nullable="false" />
+          <Property Name="short_name" Type="varchar" MaxLength="250" />
+          <Property Name="subtitle" Type="varchar" MaxLength="250" />
+          <Property Name="title" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="content_id" Type="int" Nullable="false" />
+          <Property Name="data" Type="longblob" Nullable="false" />
+          <Property Name="extension" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="heigth" Type="int" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="350" />
+          <Property Name="page" Type="varchar" MaxLength="250" />
+          <Property Name="position_in_content" Type="int" Nullable="false" />
+          <Property Name="width" Type="int" />
+        </EntityType>
+        <EntityType Name="note">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="content" Type="text" />
+          <Property Name="content_id" Type="int" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="position_in_content" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paragraph">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="chapter_id" Type="int" Nullable="false" />
+          <Property Name="content_id" Type="int" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="last_changed" Type="timestamp" Precision="0" />
+          <Property Name="number" Type="varchar" MaxLength="250" />
+          <Property Name="order_in_chapter" Type="int" Nullable="false" />
+          <Property Name="page" Type="varchar" MaxLength="250" />
+          <Property Name="title" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="content_id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="500" />
+          <Property Name="page" Type="varchar" MaxLength="250" />
+          <Property Name="position_in_content" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="table_cell">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="col" Type="int" Nullable="false" />
+          <Property Name="colspan" Type="int" Nullable="false" />
+          <Property Name="content_id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="row" Type="int" Nullable="false" />
+          <Property Name="rowspan" Type="int" Nullable="false" />
+          <Property Name="table_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_chapter_content">
+          <End Role="content" Type="SkyModel.Store.content" Multiplicity="0..1" />
+          <End Role="chapter" Type="SkyModel.Store.chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="chapter">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_chapter_document_id">
+          <End Role="document" Type="SkyModel.Store.document" Multiplicity="1" />
+          <End Role="chapter" Type="SkyModel.Store.chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="document">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="chapter">
+              <PropertyRef Name="document_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_content_definition_content_id">
+          <End Role="content" Type="SkyModel.Store.content" Multiplicity="1" />
+          <End Role="content_definition" Type="SkyModel.Store.content_definition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="content_definition">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_content_definition_definition_id">
+          <End Role="definition" Type="SkyModel.Store.definition" Multiplicity="1" />
+          <End Role="content_definition" Type="SkyModel.Store.content_definition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="definition">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="content_definition">
+              <PropertyRef Name="definition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_definition_content">
+          <End Role="content" Type="SkyModel.Store.content" Multiplicity="1" />
+          <End Role="definition" Type="SkyModel.Store.definition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="definition">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_image_content">
+          <End Role="content" Type="SkyModel.Store.content" Multiplicity="1" />
+          <End Role="image" Type="SkyModel.Store.image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="image">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_note_content">
+          <End Role="content" Type="SkyModel.Store.content" Multiplicity="0..1" />
+          <End Role="note" Type="SkyModel.Store.note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="note">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_paragraph_chapter_id">
+          <End Role="chapter" Type="SkyModel.Store.chapter" Multiplicity="1" />
+          <End Role="paragraph" Type="SkyModel.Store.paragraph" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chapter">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paragraph">
+              <PropertyRef Name="chapter_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_paragraph_content">
+          <End Role="content" Type="SkyModel.Store.content" Multiplicity="0..1" />
+          <End Role="paragraph" Type="SkyModel.Store.paragraph" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paragraph">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_table_cell_content_id">
+          <End Role="content" Type="SkyModel.Store.content" Multiplicity="1" />
+          <End Role="table_cell" Type="SkyModel.Store.table_cell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="table_cell">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_table_cell_table_id">
+          <End Role="table" Type="SkyModel.Store.table" Multiplicity="1" />
+          <End Role="table_cell" Type="SkyModel.Store.table_cell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="table">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="table_cell">
+              <PropertyRef Name="table_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_table_content">
+          <End Role="content" Type="SkyModel.Store.content" Multiplicity="1" />
+          <End Role="table" Type="SkyModel.Store.table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="content">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="table">
+              <PropertyRef Name="content_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SkyModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="SkybraryEntities" >
+          <EntitySet Name="ChapterSet" EntityType="SkyModel.Chapter" />
+          <EntitySet Name="ContentSet" EntityType="SkyModel.Content" />
+          <EntitySet Name="ContentDefinitionSet" EntityType="SkyModel.ContentDefinition" />
+          <EntitySet Name="DefinitonSet" EntityType="SkyModel.Definition" />
+          <EntitySet Name="DocumentSet" EntityType="SkyModel.Document" />
+          <EntitySet Name="ImageSet" EntityType="SkyModel.Image" />
+          <EntitySet Name="NoteSet" EntityType="SkyModel.Note" />
+          <EntitySet Name="ParagraphSet" EntityType="SkyModel.Paragraph" />
+          <EntitySet Name="TableSet" EntityType="SkyModel.Table" />
+          <EntitySet Name="TableCellSet" EntityType="SkyModel.TableCell" />
+          <AssociationSet Name="fk_chapter_content" Association="SkyModel.fk_chapter_content">
+            <End Role="Content" EntitySet="ContentSet" />
+            <End Role="Chapter" EntitySet="ChapterSet" /></AssociationSet>
+          <AssociationSet Name="fk_chapter_document_id" Association="SkyModel.fk_chapter_document_id">
+            <End Role="Document" EntitySet="DocumentSet" />
+            <End Role="Chapter" EntitySet="ChapterSet" /></AssociationSet>
+          <AssociationSet Name="fk_paragraph_chapter_id" Association="SkyModel.fk_paragraph_chapter_id">
+            <End Role="Chapter" EntitySet="ChapterSet" />
+            <End Role="Paragraph" EntitySet="ParagraphSet" /></AssociationSet>
+          <AssociationSet Name="fk_content_definition_content_id" Association="SkyModel.fk_content_definition_content_id">
+            <End Role="Content" EntitySet="ContentSet" />
+            <End Role="ContentDefinition" EntitySet="ContentDefinitionSet" /></AssociationSet>
+          <AssociationSet Name="fk_definition_content" Association="SkyModel.fk_definition_content">
+            <End Role="Content" EntitySet="ContentSet" />
+            <End Role="Definition" EntitySet="DefinitonSet" /></AssociationSet>
+          <AssociationSet Name="fk_image_content" Association="SkyModel.fk_image_content">
+            <End Role="content" EntitySet="ContentSet" />
+            <End Role="image" EntitySet="ImageSet" /></AssociationSet>
+          <AssociationSet Name="fk_note_content" Association="SkyModel.fk_note_content">
+            <End Role="Content" EntitySet="ContentSet" />
+            <End Role="Note" EntitySet="NoteSet" /></AssociationSet>
+          <AssociationSet Name="fk_paragraph_content" Association="SkyModel.fk_paragraph_content">
+            <End Role="Content" EntitySet="ContentSet" />
+            <End Role="Paragraph" EntitySet="ParagraphSet" /></AssociationSet>
+          <AssociationSet Name="fk_table_cell_content_id" Association="SkyModel.fk_table_cell_content_id">
+            <End Role="Content" EntitySet="ContentSet" />
+            <End Role="TableCell" EntitySet="TableCellSet" /></AssociationSet>
+          <AssociationSet Name="fk_table_content" Association="SkyModel.fk_table_content">
+            <End Role="content" EntitySet="ContentSet" />
+            <End Role="table" EntitySet="TableSet" /></AssociationSet>
+          <AssociationSet Name="fk_content_definition_definition_id" Association="SkyModel.fk_content_definition_definition_id">
+            <End Role="Definition" EntitySet="DefinitonSet" />
+            <End Role="ContentDefinition" EntitySet="ContentDefinitionSet" /></AssociationSet>
+          <AssociationSet Name="fk_table_cell_table_id" Association="SkyModel.fk_table_cell_table_id">
+            <End Role="Table" EntitySet="TableSet" />
+            <End Role="TableCell" EntitySet="TableCellSet" /></AssociationSet></EntityContainer>
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LastChanged" Type="DateTimeOffset" Nullable="true" />
+          <Property Name="OrderInDocument" Type="Int32" Nullable="false" />
+          <Property Name="Page" Type="String" Nullable="true" />
+          <Property Name="Subtitle" Type="String" Nullable="true" />
+          <Property Name="Title" Type="String" Nullable="true" />
+          <NavigationProperty Name="Content" Relationship="SkyModel.fk_chapter_content" FromRole="Chapter" ToRole="Content" />
+          <NavigationProperty Name="Document" Relationship="SkyModel.fk_chapter_document_id" FromRole="Chapter" ToRole="Document" />
+          <NavigationProperty Name="Paragraphs" Relationship="SkyModel.fk_paragraph_chapter_id" FromRole="Chapter" ToRole="Paragraph" /></EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Text" Type="String" Nullable="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chapter" Relationship="SkyModel.fk_chapter_content" FromRole="Content" ToRole="Chapter" />
+          <NavigationProperty Name="ContentDefinitions" Relationship="SkyModel.fk_content_definition_content_id" FromRole="Content" ToRole="ContentDefinition" />
+          <NavigationProperty Name="Definition" Relationship="SkyModel.fk_definition_content" FromRole="Content" ToRole="Definition" />
+          <NavigationProperty Name="Images" Relationship="SkyModel.fk_image_content" FromRole="content" ToRole="image" />
+          <NavigationProperty Name="Notes" Relationship="SkyModel.fk_note_content" FromRole="Content" ToRole="Note" />
+          <NavigationProperty Name="Paragraph" Relationship="SkyModel.fk_paragraph_content" FromRole="Content" ToRole="Paragraph" />
+          <NavigationProperty Name="TableCell" Relationship="SkyModel.fk_table_cell_content_id" FromRole="Content" ToRole="TableCell" />
+          <NavigationProperty Name="Tables" Relationship="SkyModel.fk_table_content" FromRole="content" ToRole="table" /></EntityType>
+        <EntityType Name="ContentDefinition">
+          <Key>
+            <PropertyRef Name="ContentId" />
+            <PropertyRef Name="DefinitionId" /></Key>
+          <Property Name="ContentId" Type="Int32" Nullable="false" />
+          <Property Name="DefinitionId" Type="Int32" Nullable="false" />
+          <Property Name="Page" Type="String" Nullable="true" />
+          <Property Name="PositionInContent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="SkyModel.fk_content_definition_content_id" FromRole="ContentDefinition" ToRole="Content" />
+          <NavigationProperty Name="Definition" Relationship="SkyModel.fk_content_definition_definition_id" FromRole="ContentDefinition" ToRole="Definition" /></EntityType>
+        <EntityType Name="Definition">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Term" Type="String" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="SkyModel.fk_definition_content" FromRole="Definition" ToRole="Content" />
+          <NavigationProperty Name="ContentDefinition" Relationship="SkyModel.fk_content_definition_definition_id" FromRole="Definition" ToRole="ContentDefinition" /></EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="GroupName" Type="String" Nullable="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LastChanged" Type="DateTimeOffset" Nullable="true" />
+          <Property Name="OrderInGroup" Type="Int32" Nullable="false" />
+          <Property Name="ShortName" Type="String" Nullable="true" />
+          <Property Name="Subtitle" Type="String" Nullable="true" />
+          <Property Name="Title" Type="String" Nullable="true" />
+          <NavigationProperty Name="Chapters" Relationship="SkyModel.fk_chapter_document_id" FromRole="Document" ToRole="Chapter" /></EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Data" Type="Binary" Nullable="false" />
+          <Property Name="Extension" Type="String" Nullable="false" />
+          <Property Name="Height" Type="Int32" Nullable="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Page" Type="String" Nullable="true" />
+          <Property Name="PositionInContent" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="content" Relationship="SkyModel.fk_image_content" FromRole="image" ToRole="content" /></EntityType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Text" Type="String" Nullable="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PositionInContent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="SkyModel.fk_note_content" FromRole="Note" ToRole="Content" /></EntityType>
+        <EntityType Name="Paragraph">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LastChanged" Type="DateTimeOffset" Nullable="true" />
+          <Property Name="Number" Type="String" Nullable="true" />
+          <Property Name="OrderInChapter" Type="Int32" Nullable="false" />
+          <Property Name="Page" Type="String" Nullable="true" />
+          <Property Name="Title" Type="String" Nullable="true" />
+          <NavigationProperty Name="Chapter" Relationship="SkyModel.fk_paragraph_chapter_id" FromRole="Paragraph" ToRole="Chapter" />
+          <NavigationProperty Name="Content" Relationship="SkyModel.fk_paragraph_content" FromRole="Paragraph" ToRole="Content" /></EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Page" Type="String" Nullable="true" />
+          <Property Name="PositionInContent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="SkyModel.fk_table_content" FromRole="table" ToRole="content" />
+          <NavigationProperty Name="TableCells" Relationship="SkyModel.fk_table_cell_table_id" FromRole="Table" ToRole="TableCell" /></EntityType>
+        <EntityType Name="TableCell">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Col" Type="Int32" Nullable="false" />
+          <Property Name="ColSpan" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Row" Type="Int32" Nullable="false" />
+          <Property Name="RowSpan" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="SkyModel.fk_table_cell_content_id" FromRole="TableCell" ToRole="Content" />
+          <NavigationProperty Name="Table" Relationship="SkyModel.fk_table_cell_table_id" FromRole="TableCell" ToRole="Table" /></EntityType>
+        <Association Name="fk_chapter_content">
+          <End Type="SkyModel.Content" Role="Content" Multiplicity="0..1" />
+          <End Type="SkyModel.Chapter" Role="Chapter" Multiplicity="1" /></Association>
+        <Association Name="fk_chapter_document_id">
+          <End Type="SkyModel.Document" Role="Document" Multiplicity="1" />
+          <End Type="SkyModel.Chapter" Role="Chapter" Multiplicity="*" /></Association>
+        <Association Name="fk_paragraph_chapter_id">
+          <End Type="SkyModel.Chapter" Role="Chapter" Multiplicity="1" />
+          <End Type="SkyModel.Paragraph" Role="Paragraph" Multiplicity="*" /></Association>
+        <Association Name="fk_content_definition_content_id">
+          <End Type="SkyModel.Content" Role="Content" Multiplicity="1" />
+          <End Type="SkyModel.ContentDefinition" Role="ContentDefinition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Content">
+              <PropertyRef Name="Id" /></Principal>
+            <Dependent Role="ContentDefinition">
+              <PropertyRef Name="ContentId" /></Dependent></ReferentialConstraint></Association>
+        <Association Name="fk_definition_content">
+          <End Type="SkyModel.Content" Role="Content" Multiplicity="1" />
+          <End Type="SkyModel.Definition" Role="Definition" Multiplicity="1" /></Association>
+        <Association Name="fk_image_content">
+          <End Type="SkyModel.Content" Role="content" Multiplicity="1" />
+          <End Type="SkyModel.Image" Role="image" Multiplicity="*" /></Association>
+        <Association Name="fk_note_content">
+          <End Type="SkyModel.Content" Role="Content" Multiplicity="0..1" />
+          <End Type="SkyModel.Note" Role="Note" Multiplicity="*" /></Association>
+        <Association Name="fk_paragraph_content">
+          <End Type="SkyModel.Content" Role="Content" Multiplicity="0..1" />
+          <End Type="SkyModel.Paragraph" Role="Paragraph" Multiplicity="1" /></Association>
+        <Association Name="fk_table_cell_content_id">
+          <End Type="SkyModel.Content" Role="Content" Multiplicity="1" />
+          <End Type="SkyModel.TableCell" Role="TableCell" Multiplicity="1" /></Association>
+        <Association Name="fk_table_content">
+          <End Type="SkyModel.Content" Role="content" Multiplicity="1" />
+          <End Type="SkyModel.Table" Role="table" Multiplicity="*" /></Association>
+        <Association Name="fk_content_definition_definition_id">
+          <End Type="SkyModel.Definition" Role="Definition" Multiplicity="1" />
+          <End Type="SkyModel.ContentDefinition" Role="ContentDefinition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Definition">
+              <PropertyRef Name="Id" /></Principal>
+            <Dependent Role="ContentDefinition">
+              <PropertyRef Name="DefinitionId" /></Dependent></ReferentialConstraint></Association>
+        <Association Name="fk_table_cell_table_id">
+          <End Type="SkyModel.Table" Role="Table" Multiplicity="1" />
+          <End Type="SkyModel.TableCell" Role="TableCell" Multiplicity="*" /></Association></Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SkyModelStoreContainer" CdmEntityContainer="SkybraryEntities" >
+          <EntitySetMapping Name="ChapterSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.Chapter)">
+              <MappingFragment StoreEntitySet="chapter">
+                <ScalarProperty Name="Title" ColumnName="title" />
+                <ScalarProperty Name="Subtitle" ColumnName="subtitle" />
+                <ScalarProperty Name="Page" ColumnName="page" />
+                <ScalarProperty Name="OrderInDocument" ColumnName="order_in_document" />
+                <ScalarProperty Name="LastChanged" ColumnName="last_changed" />
+                <ScalarProperty Name="Id" ColumnName="id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ContentSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.Content)">
+              <MappingFragment StoreEntitySet="content">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Text" ColumnName="content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentDefinitionSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.ContentDefinition)">
+              <MappingFragment StoreEntitySet="content_definition">
+                <ScalarProperty Name="PositionInContent" ColumnName="position_in_content" />
+                <ScalarProperty Name="Page" ColumnName="page" />
+                <ScalarProperty Name="DefinitionId" ColumnName="definition_id" />
+                <ScalarProperty Name="ContentId" ColumnName="content_id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DefinitonSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.Definition)">
+              <MappingFragment StoreEntitySet="definition">
+                <ScalarProperty Name="Term" ColumnName="term" />
+                <ScalarProperty Name="Id" ColumnName="id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DocumentSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.Document)">
+              <MappingFragment StoreEntitySet="document">
+                <ScalarProperty Name="Title" ColumnName="title" />
+                <ScalarProperty Name="Subtitle" ColumnName="subtitle" />
+                <ScalarProperty Name="ShortName" ColumnName="short_name" />
+                <ScalarProperty Name="OrderInGroup" ColumnName="order_in_group" />
+                <ScalarProperty Name="LastChanged" ColumnName="last_changed" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="GroupName" ColumnName="group_name" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ImageSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.Image)">
+              <MappingFragment StoreEntitySet="image">
+                <ScalarProperty Name="Width" ColumnName="width" />
+                <ScalarProperty Name="PositionInContent" ColumnName="position_in_content" />
+                <ScalarProperty Name="Page" ColumnName="page" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Height" ColumnName="heigth" />
+                <ScalarProperty Name="Extension" ColumnName="extension" />
+                <ScalarProperty Name="Data" ColumnName="data" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NoteSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.Note)">
+              <MappingFragment StoreEntitySet="note">
+                <ScalarProperty Name="PositionInContent" ColumnName="position_in_content" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Text" ColumnName="content" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ParagraphSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.Paragraph)">
+              <MappingFragment StoreEntitySet="paragraph">
+                <ScalarProperty Name="Title" ColumnName="title" />
+                <ScalarProperty Name="Page" ColumnName="page" />
+                <ScalarProperty Name="OrderInChapter" ColumnName="order_in_chapter" />
+                <ScalarProperty Name="Number" ColumnName="number" />
+                <ScalarProperty Name="LastChanged" ColumnName="last_changed" />
+                <ScalarProperty Name="Id" ColumnName="id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TableSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.Table)">
+              <MappingFragment StoreEntitySet="table">
+                <ScalarProperty Name="PositionInContent" ColumnName="position_in_content" />
+                <ScalarProperty Name="Page" ColumnName="page" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TableCellSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SkyModel.TableCell)">
+              <MappingFragment StoreEntitySet="table_cell">
+                <ScalarProperty Name="RowSpan" ColumnName="rowspan" />
+                <ScalarProperty Name="Row" ColumnName="row" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="ColSpan" ColumnName="colspan" />
+                <ScalarProperty Name="Col" ColumnName="col" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="fk_chapter_content" TypeName="SkyModel.fk_chapter_content" StoreEntitySet="chapter">
+            <EndProperty Name="Chapter">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="Content">
+              <ScalarProperty Name="Id" ColumnName="content_id" /></EndProperty>
+            <Condition ColumnName="content_id" IsNull="false" /></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_chapter_document_id" TypeName="SkyModel.fk_chapter_document_id" StoreEntitySet="chapter">
+            <EndProperty Name="Chapter">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="Document">
+              <ScalarProperty Name="Id" ColumnName="document_id" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_paragraph_chapter_id" TypeName="SkyModel.fk_paragraph_chapter_id" StoreEntitySet="paragraph">
+            <EndProperty Name="Paragraph">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="Chapter">
+              <ScalarProperty Name="Id" ColumnName="chapter_id" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_content_definition_content_id" TypeName="SkyModel.fk_content_definition_content_id" StoreEntitySet="content_definition">
+            <EndProperty Name="ContentDefinition">
+              <ScalarProperty Name="DefinitionId" ColumnName="definition_id" />
+              <ScalarProperty Name="ContentId" ColumnName="content_id" /></EndProperty>
+            <EndProperty Name="Content">
+              <ScalarProperty Name="Id" ColumnName="content_id" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_definition_content" TypeName="SkyModel.fk_definition_content" StoreEntitySet="definition">
+            <EndProperty Name="Definition">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="Content">
+              <ScalarProperty Name="Id" ColumnName="content_id" /></EndProperty>
+            </AssociationSetMapping>
+          <AssociationSetMapping Name="fk_image_content" TypeName="SkyModel.fk_image_content" StoreEntitySet="image">
+            <EndProperty Name="image">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="content">
+              <ScalarProperty Name="Id" ColumnName="content_id" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_note_content" TypeName="SkyModel.fk_note_content" StoreEntitySet="note">
+            <EndProperty Name="Note">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="Content">
+              <ScalarProperty Name="Id" ColumnName="content_id" /></EndProperty>
+            <Condition ColumnName="content_id" IsNull="false" /></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_paragraph_content" TypeName="SkyModel.fk_paragraph_content" StoreEntitySet="paragraph">
+            <EndProperty Name="Paragraph">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="Content">
+              <ScalarProperty Name="Id" ColumnName="content_id" /></EndProperty>
+            <Condition ColumnName="content_id" IsNull="false" /></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_table_cell_content_id" TypeName="SkyModel.fk_table_cell_content_id" StoreEntitySet="table_cell">
+            <EndProperty Name="TableCell">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="Content">
+              <ScalarProperty Name="Id" ColumnName="content_id" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_table_content" TypeName="SkyModel.fk_table_content" StoreEntitySet="table">
+            <EndProperty Name="table">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="content">
+              <ScalarProperty Name="Id" ColumnName="content_id" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_content_definition_definition_id" TypeName="SkyModel.fk_content_definition_definition_id" StoreEntitySet="content_definition">
+            <EndProperty Name="ContentDefinition">
+              <ScalarProperty Name="DefinitionId" ColumnName="definition_id" />
+              <ScalarProperty Name="ContentId" ColumnName="content_id" /></EndProperty>
+            <EndProperty Name="Definition">
+              <ScalarProperty Name="Id" ColumnName="definition_id" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="fk_table_cell_table_id" TypeName="SkyModel.fk_table_cell_table_id" StoreEntitySet="table_cell">
+            <EndProperty Name="TableCell">
+              <ScalarProperty Name="Id" ColumnName="id" /></EndProperty>
+            <EndProperty Name="Table">
+              <ScalarProperty Name="Id" ColumnName="table_id" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="SkybraryDB" ZoomLevel="86" >
+        <EntityTypeShape EntityType="SkyModel.Chapter" Width="1.5" PointX="3.125" PointY="0.5" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="SkyModel.Content" Width="2.125" PointX="3" PointY="3.875" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="SkyModel.ContentDefinition" Width="1.5" PointX="6.75" PointY="3.25" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="SkyModel.Definition" Width="1.5" PointX="6.875" PointY="6.125" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="SkyModel.Document" Width="1.5" PointX="0.5" PointY="0.5" Height="2.5571907552083326" />
+        <EntityTypeShape EntityType="SkyModel.Image" Width="1.5" PointX="0.5" PointY="6.5" Height="2.749492187499996" />
+        <EntityTypeShape EntityType="SkyModel.Note" Width="1.5" PointX="0.5" PointY="4" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="SkyModel.Paragraph" Width="1.5" PointX="5.25" PointY="0.5" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="SkyModel.Table" Width="1.5" PointX="2.5" PointY="7.75" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="SkyModel.TableCell" Width="1.5" PointX="4.625" PointY="7.875" Height="2.3648893229166656" />
+        <AssociationConnector Association="SkyModel.fk_chapter_content" >
+          <ConnectorPoint PointX="3.875" PointY="3.875" />
+          <ConnectorPoint PointX="3.875" PointY="3.2494921874999996" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_chapter_document_id" >
+          <ConnectorPoint PointX="2" PointY="1.7785953776041663" />
+          <ConnectorPoint PointX="3.125" PointY="1.7785953776041663" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_paragraph_chapter_id" >
+          <ConnectorPoint PointX="4.625" PointY="1.7785953776041659" />
+          <ConnectorPoint PointX="5.25" PointY="1.7785953776041659" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_content_definition_content_id" >
+          <ConnectorPoint PointX="5.125" PointY="4.6487939453125" />
+          <ConnectorPoint PointX="5.885416666666667" PointY="4.6487939453124989" />
+          <ConnectorPoint PointX="6.052083333333333" PointY="4.6487939453125" />
+          <ConnectorPoint PointX="6.75" PointY="4.6487939453125" /></AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_definition_content" >
+          <ConnectorPoint PointX="5.125" PointY="6.4708968098958328" />
+          <ConnectorPoint PointX="6.875" PointY="6.4708968098958328" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_image_content" >
+          <ConnectorPoint PointX="4.3125" PointY="6.8167936197916656" />
+          <ConnectorPoint PointX="4.3125" PointY="7.2521473098958324" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="7.2521473098958316" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="7.2521473098958324" />
+          <ConnectorPoint PointX="2" PointY="7.2521473098958324" /></AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_note_content" >
+          <ConnectorPoint PointX="3" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="2" PointY="4.8939925130208337" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_paragraph_content" >
+          <ConnectorPoint PointX="5.125" PointY="5.5598453776041659" />
+          <ConnectorPoint PointX="5.96875" PointY="5.5598453776041659" />
+          <ConnectorPoint PointX="5.96875" PointY="3.0571907552083317" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_table_cell_content_id" >
+          <ConnectorPoint PointX="4.875" PointY="6.8167936197916656" />
+          <ConnectorPoint PointX="4.875" PointY="7.875" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_table_content" >
+          <ConnectorPoint PointX="3.5" PointY="6.8167936197916656" />
+          <ConnectorPoint PointX="3.5" PointY="7.75" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_content_definition_definition_id" >
+          <ConnectorPoint PointX="7.5625" PointY="6.125" />
+          <ConnectorPoint PointX="7.5625" PointY="5.422587890625" />
+          </AssociationConnector>
+        <AssociationConnector Association="SkyModel.fk_table_cell_table_id" >
+          <ConnectorPoint PointX="4" PointY="8.8987939453125016" />
+          <ConnectorPoint PointX="4.625" PointY="8.8987939453125016" />
+          </AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,25 @@
+﻿#easyTooltip{
+	margin:0 10px 1em 0;
+	width:450px;
+	padding:8px;
+	background:#fcfcfc;
+	border:1px solid #e1e1e1;
+	line-height:130%;				
+	}
+#easyTooltip h3{
+	margin:0 0 .5em 0;
+	font:13px Arial, Helvetica, sans-serif;
+	text-transform:uppercase;
+	}	
+#easyTooltip p{
+	margin:0 0 .5em 0;
+	}		
+#easyTooltip img{
+		background:#fff;
+		padding:1px;
+		border:1px solid #e1e1e1;
+		float:left;
+		margin-right:10px;
+		}		
+
+#tooltipItem{display:none;}
