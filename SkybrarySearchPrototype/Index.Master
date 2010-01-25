@@ -29,7 +29,7 @@
     <div id="main">
        <div id="header-container">
             <div id="header-logo">           
-                <a href="skysearch.aspx">
+                <a href="Search.aspx">
                     <img src="Assets/Images/search_logo.jpg" alt="skybrary_logo" />
                 </a>
             </div>           
@@ -47,7 +47,7 @@
             WatermarkText="Enter your search query here...">
        </act:TextBoxWatermarkExtender>
         <div>
-            <a href="skysearch.aspx" title="View Documents And Filter Search">Documents Index</a> | <a href="#">Skybrary Help</a>
+            <a href="Search.aspx" title="View Documents And Filter Search">Documents Index</a> | <a href="#">Skybrary Help</a>
         </div>
         
         <hr />
