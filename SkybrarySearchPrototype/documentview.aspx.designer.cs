@@ -11,7 +11,7 @@
 namespace SkybrarySearchPrototype {
     
     
-    public partial class documentview {
+    public partial class Documentview {
         
         /// <summary>
         /// headerTitle control.

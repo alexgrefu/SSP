@@ -19,7 +19,6 @@ namespace SkybrarySearchPrototype
         {
             BitArray bits = new BitArray(reader.MaxDoc());
 
-
             return bits;
         }
     }

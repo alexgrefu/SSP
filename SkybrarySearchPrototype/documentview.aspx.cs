@@ -9,7 +9,7 @@ using Telerik.Web.UI;
 
 namespace SkybrarySearchPrototype
 {
-    public partial class documentview : System.Web.UI.Page
+    public partial class Documentview : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

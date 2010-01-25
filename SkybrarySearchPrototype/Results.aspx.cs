@@ -18,7 +18,7 @@ using Lucene.Net.Index;
 
 namespace SkybrarySearchPrototype
 {
-    public partial class searchresults : System.Web.UI.Page
+    public partial class Results : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

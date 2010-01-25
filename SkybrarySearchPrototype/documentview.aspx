@@ -1,6 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Index.Master" 
-         AutoEventWireup="true" CodeBehind="documentview.aspx.cs" 
-         Inherits="SkybrarySearchPrototype.documentview" EnableViewState="false" %>
+         AutoEventWireup="true" CodeBehind="DocumentView.aspx.cs" 
+         Inherits="SkybrarySearchPrototype.Documentview" EnableViewState="false" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -19,7 +19,8 @@ function pageLoad()
    var attributes = selectedNode.get_attributes();
    //alert(attributes.getAttribute("t"));
    LoadTextElement(selectedNode.get_value(), attributes.getAttribute("t"));
-}
+
+}
 
 function LoadTextElement(id, type) {
     $('#textContent').html("<b>Loading...</b>");

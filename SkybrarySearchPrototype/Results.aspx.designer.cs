@@ -11,7 +11,7 @@
 namespace SkybrarySearchPrototype {
     
     
-    public partial class searchresults {
+    public partial class Results {
         
         /// <summary>
         /// infoHeader control.

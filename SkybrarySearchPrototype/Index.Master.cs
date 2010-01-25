@@ -47,7 +47,7 @@ namespace SkybrarySearchPrototype
                 var query = Session["query"] as SearchQuery;
                 query.Query = txtSearchQuery.Text;
 
-                Response.Redirect("searchresults.aspx");
+                Response.Redirect("Results.aspx");
 
             }
         }

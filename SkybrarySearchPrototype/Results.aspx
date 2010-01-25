@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Index.Master" 
-    AutoEventWireup="true" CodeBehind="searchresults.aspx.cs" 
-    Inherits="SkybrarySearchPrototype.searchresults" 
+    AutoEventWireup="true" CodeBehind="Results.aspx.cs" 
+    Inherits="SkybrarySearchPrototype.Results" 
     EnableViewState="false" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
@@ -10,6 +10,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="cphMain" runat="server">
 
 <script type="text/javascript">
@@ -24,7 +25,8 @@
             title: "Skybrary Quick Text Viewer"
         });
 
-
+        // the tooltip plugin: it is using a hard coded id !!!! 
+        // TO FIX
         $('#spanTooltip').easyTooltip({
             useElement: "ctl00_cphMain_tooltipItem"
         });
@@ -105,8 +107,7 @@
 
 
 <div id="TextViewerDialog">
-    <div id="dialogContainer">
-    </div>
+    <div id="dialogContainer"></div>
 </div>
 
 
