@@ -32,13 +32,22 @@ namespace SkybrarySearchPrototype {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl filterText;
         
         /// <summary>
-        /// accSearchResults control.
+        /// lvSearchResults control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.Accordion accSearchResults;
+        protected global::System.Web.UI.WebControls.ListView lvSearchResults;
+        
+        /// <summary>
+        /// pager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pager;
         
         /// <summary>
         /// tooltipItem control.

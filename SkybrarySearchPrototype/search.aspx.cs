@@ -23,20 +23,23 @@ namespace SkybrarySearchPrototype
         {
             using (var db = new SkybraryEntities())
             {
+                var gd = (from document in db.DocumentSet
+                          group document by document.GroupName
+                          into groupedDocuments
+                          select new
+                             {
+                                 Documents = 
+                                    (from groupedDocument in groupedDocuments 
+                                     select groupedDocument).OrderBy(g => g.OrderInGroup),
+                                 Count = groupedDocuments.Count(),
+                                 Title = groupedDocuments.Key,
+                                 GroupOrder =
+                                    (from groupedDocument in groupedDocuments 
+                                     select groupedDocument.OrderInGroup).Min()
+                             });
 
-                var gd = (from doc in db.DocumentSet
-                          group doc by doc.GroupName
-                              into gc
-                              select new
-                                         {
-                                             Documents = (from g in gc select g).OrderBy(g => g.OrderInGroup),
-                                             Count = gc.Count(),
-                                             Title = gc.Key,
-                                             GroupOrder = (from g in gc select g.OrderInGroup).Min()
-                                         });
-
+                // grouped documents list
                 var list = gd.ToList().OrderBy(d => d.GroupOrder);
-
 
                 foreach (var documentsGroup in list)
                 {
@@ -49,23 +52,28 @@ namespace SkybrarySearchPrototype
 
                     if (documentsGroup.Title == "Convention on International Civil Aviation")
                     {
-                        groupNode.Attributes["filter"] = documentsGroup.Title;
+                        groupNode.Attributes["filter"] = documentsGroup.Documents.FirstOrDefault().Id.ToString();
                         groupNode.ToolTip = documentsGroup.Title;
                         rtvDocumentIndex.Nodes.Add(groupNode);
                     }
                     else
                     {
-                        var gds = from g in documentsGroup.Documents
-                                  group g by g.ShortName
+                        var gds = from groupedDocuments in documentsGroup.Documents
+                                  group groupedDocuments by groupedDocuments.ShortName
                                   into gc
-                                      select new
-                                                 {
-                                                     SubDocuments = gc,
-                                                     Title = gc.Key,
-                                                     Count = gc.Count(),
-                                                     Id =
-                                      gc.Count() == 1 ? gc.Where(d => d.Title == gc.Key).Select(i => i.Id).Single() : -1
-                                                 };
+                                  select new
+                                  {
+                                     SubDocuments = gc,
+                                     Title = gc.Key,
+                                     Count = gc.Count(),
+                                     Id = gc.Count() == 1 
+                                                ? 
+                                                gc.Where(d => d.Title == gc.Key)
+                                                  .Select(i => i.Id)
+                                                  .Single() 
+                                                : 
+                                                -1
+                                    };
 
                         foreach (var subdocument in gds)
                         {
@@ -78,13 +86,13 @@ namespace SkybrarySearchPrototype
                             if (subdocument.Count > 1)
                             {
                                 foreach (var sd in subdocument.SubDocuments)
-                                    documentNode.Attributes["filter"] += sd.Title + ";";
+                                    documentNode.Attributes["filter"] += sd.Id + ";";
                             }
                             else
-                                documentNode.Attributes["filter"] = subdocument.Title;
+                                documentNode.Attributes["filter"] = subdocument.Id.ToString();
 
                             groupNode.Nodes.Add(documentNode);
-                            documentNode.ToolTip = documentNode.Attributes["filter"];
+                            documentNode.ToolTip = subdocument.Title;
                         }
 
                         rtvDocumentIndex.Nodes.Add(groupNode);

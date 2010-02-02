@@ -16,7 +16,6 @@ namespace SkybrarySearch.Data
             }
         }
 
-
         public string ToHTML()
         {
             var sb = new StringBuilder();
@@ -27,6 +26,11 @@ namespace SkybrarySearch.Data
             return sb.ToString();
         }
 
+        public string ToSearchIndex()
+        {
+            return Text + "\n";
+        }
+
 
         #region IPositionedElement Members
 
@@ -34,6 +38,11 @@ namespace SkybrarySearch.Data
         public int Length
         {
             get { return ToHTML().Length; }
+        }
+
+        public int TextLenght
+        {
+            get { return ToSearchIndex().Length; }
         }
 
         #endregion

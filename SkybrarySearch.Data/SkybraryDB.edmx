@@ -687,7 +687,7 @@
       <Diagram Name="SkybraryDB" ZoomLevel="86" >
         <EntityTypeShape EntityType="SkyModel.Chapter" Width="1.5" PointX="3.125" PointY="0.5" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="SkyModel.Content" Width="2.125" PointX="3" PointY="3.875" Height="2.9417936197916656" />
-        <EntityTypeShape EntityType="SkyModel.ContentDefinition" Width="1.5" PointX="6.75" PointY="3.25" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="SkyModel.ContentDefinition" Width="1.5" PointX="6.875" PointY="3.5" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="SkyModel.Definition" Width="1.5" PointX="6.875" PointY="6.125" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SkyModel.Document" Width="1.5" PointX="0.5" PointY="0.5" Height="2.5571907552083326" />
         <EntityTypeShape EntityType="SkyModel.Image" Width="1.5" PointX="0.5" PointY="6.5" Height="2.749492187499996" />
@@ -708,10 +708,10 @@
           <ConnectorPoint PointX="5.25" PointY="1.7785953776041659" />
           </AssociationConnector>
         <AssociationConnector Association="SkyModel.fk_content_definition_content_id" >
-          <ConnectorPoint PointX="5.125" PointY="4.6487939453125" />
-          <ConnectorPoint PointX="5.885416666666667" PointY="4.6487939453124989" />
-          <ConnectorPoint PointX="6.052083333333333" PointY="4.6487939453125" />
-          <ConnectorPoint PointX="6.75" PointY="4.6487939453125" /></AssociationConnector>
+          <ConnectorPoint PointX="5.125" PointY="4.6549226888020829" />
+          <ConnectorPoint PointX="5.885416666666667" PointY="4.654922688802082" />
+          <ConnectorPoint PointX="6.052083333333333" PointY="4.6549226888020829" />
+          <ConnectorPoint PointX="6.875" PointY="4.6549226888020829" /></AssociationConnector>
         <AssociationConnector Association="SkyModel.fk_definition_content" >
           <ConnectorPoint PointX="5.125" PointY="6.4708968098958328" />
           <ConnectorPoint PointX="6.875" PointY="6.4708968098958328" />
@@ -740,8 +740,8 @@
           <ConnectorPoint PointX="3.5" PointY="7.75" />
           </AssociationConnector>
         <AssociationConnector Association="SkyModel.fk_content_definition_definition_id" >
-          <ConnectorPoint PointX="7.5625" PointY="6.125" />
-          <ConnectorPoint PointX="7.5625" PointY="5.422587890625" />
+          <ConnectorPoint PointX="7.625" PointY="6.125" />
+          <ConnectorPoint PointX="7.625" PointY="5.672587890625" />
           </AssociationConnector>
         <AssociationConnector Association="SkyModel.fk_table_cell_table_id" >
           <ConnectorPoint PointX="4" PointY="8.8987939453125016" />

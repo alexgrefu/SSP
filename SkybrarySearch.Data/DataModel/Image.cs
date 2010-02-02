@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace SkybrarySearch.Data
 {
@@ -25,12 +26,22 @@ namespace SkybrarySearch.Data
             return sb.ToString();
         }
 
+        public string ToSearchIndex()
+        {
+            return Name + "\n";
+        }
+
         public int Length
         {
             get
             {
                 return ToHTML().Length;
             }
+        }
+
+        public int TextLenght
+        {
+            get { return ToSearchIndex().Length; }
         }
     }
 }

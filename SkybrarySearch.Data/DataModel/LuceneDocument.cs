@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SkybrarySearch.Data
 {
-    public class LuceneDocument
+    public class ViewDocument
     {
         public int Id { get; set; }
         public string Type { get; set; }
@@ -15,5 +15,7 @@ namespace SkybrarySearch.Data
         public string Content { get; set; }
         public int OrderInDocument { get; set; }
         public int OrderInChapter { get; set; }
+
+        public float Score { get; set; }
     }
 }

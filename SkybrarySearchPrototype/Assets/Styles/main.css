@@ -146,4 +146,44 @@ a:visited
 {
     display:none;
 }
+
+.document-header
+{
+    margin:0;
+    /*
+    background-image:url(../Images/results_doc.jpg);
+    background-repeat:no-repeat;
+    line-height:32px;
+    padding-left:37px; */
+    color:#1C2B5D;
+}
+
+#ctl00_cphMain_pager
+{
+    margin: 5px;
+    line-height: 32px;
+    
+}
+
+#footer
+{
+    margin: auto;
+	width: 900px;
+	border-top: solid 1px #5378C1;
+	padding: 10px;
+	background: #ffffff;
+	height: 40px;
+}
+
+#footer h4
+{
+    margin:0;
+    padding:0;
+    line-height: 40px;
+}
+
+a.current
+{
+    color: Red;
+}
     

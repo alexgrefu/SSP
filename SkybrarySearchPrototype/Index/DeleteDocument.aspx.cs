@@ -3,20 +3,20 @@ using SkybrarySearch.Index;
 
 namespace SkybrarySearchPrototype
 {
-    public partial class IndexDocument : System.Web.UI.Page
+    public partial class DeleteDocument : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] == null)
                 Response.Redirect("~/Index/Documents.aspx");
             else
-                AddDocumentToLuceneIndex(Int32.Parse(Request.QueryString["id"]));       
+                DeleteDocumentFromIndex(Int32.Parse(Request.QueryString["id"]));   
         }
 
-        private void AddDocumentToLuceneIndex(int documentId)
+        private void DeleteDocumentFromIndex(int documentId)
         {
             FSIndexer indexer = new FSIndexer();
-            indexer.Index(documentId);
+            indexer.Delete(documentId);
             Response.Redirect("~/Index/Documents.aspx");
         }
     }

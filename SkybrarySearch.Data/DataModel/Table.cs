@@ -8,6 +8,34 @@ namespace SkybrarySearch.Data
 {
     public partial class Table : IPositionedElement
     {
+
+        public string ToSearchIndex()
+        {
+
+            if (!TableCells.IsLoaded)
+                TableCells.Load();
+
+            var sb = new StringBuilder();
+
+            sb.Append(Name + "\n");
+
+            var rows = from tc in TableCells
+                       group tc by tc.Row
+                           into r
+                           select new { Cells = r };
+
+            foreach (var row in rows)
+            {
+                foreach (var cell in row.Cells)
+                {
+                    sb.Append(cell.ToSearchIndex());
+                    sb.Append("\t");
+                }
+                sb.Append("\n");
+            }
+
+            return sb.ToString();
+        }
         
         public string ToHTML()
         {
@@ -62,6 +90,11 @@ namespace SkybrarySearch.Data
         public int Length
         {
             get { return ToHTML().Length; }
+        }
+
+        public int TextLenght
+        {
+            get { return ToSearchIndex().Length; }
         }
 
         #endregion

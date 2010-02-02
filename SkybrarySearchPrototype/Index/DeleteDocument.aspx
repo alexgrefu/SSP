@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IndexDocument.aspx.cs" Inherits="SkybrarySearchPrototype.IndexDocument" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DeleteDocument.aspx.cs" Inherits="SkybrarySearchPrototype.DeleteDocument" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 

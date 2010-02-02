@@ -53,6 +53,9 @@
         <hr />
         <asp:ContentPlaceHolder ID="cphMain" runat="server"></asp:ContentPlaceHolder>
     </div>
+    <div id="footer">
+        <h4>2010 @ Developed for Eurocontrol</h4>
+    </div>
     </form>
 </body>
 </html>

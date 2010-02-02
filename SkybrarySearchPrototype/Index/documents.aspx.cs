@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using SkybrarySearch.Data;
+using SkybrarySearch.Index;
 
 namespace SkybrarySearchPrototype
 {
-    public partial class documents : System.Web.UI.Page
+    public partial class Documents : System.Web.UI.Page
     {
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            
             using (var db = new SkybraryEntities())
             {
-
+                
                 var gd = (from doc in db.DocumentSet
                           group doc by doc.GroupName
                           into gc
@@ -52,7 +53,14 @@ namespace SkybrarySearchPrototype
                     {
                         sb.Append("<li>");
                         if (subdocument.Id != -1)
-                            sb.Append(string.Format("{0} <a href='viewdocument.aspx?id={1}'>[view]</a> <a href='indexdocument.aspx?id={1}'>[index]</a>", subdocument.Title, subdocument.Id));
+                        {
+
+                            int id = subdocument.Id;
+                            
+                            sb.Append(
+                                string.Format(
+                                    "{0} {1} {2} {3}", subdocument.Title, ViewLink(id), IndexLink(id), DeleteLink(id)));
+                        }
                         else
                             sb.Append(subdocument.Title);
                         if (subdocument.Count > 1)
@@ -60,8 +68,11 @@ namespace SkybrarySearchPrototype
                             sb.Append("<ul>");
                             foreach (var sd in subdocument.SubDocuments)
                             {
+                                int id = sd.Id;
                                 sb.Append("<li>");
-                                sb.Append(string.Format("{0} <a href='viewdocument.aspx?id={1}'>[view]</a> <a href='indexdocument.aspx?id={1}'>[index]</a>", sd.Title, sd.Id));
+                                sb.Append(
+                                string.Format(
+                                    "{0} {1} {2} {3}", sd.Title, ViewLink(id), IndexLink(id), DeleteLink(id)));
                                 sb.Append("</li>");
                             }
                             sb.Append("</ul>");
@@ -78,6 +89,34 @@ namespace SkybrarySearchPrototype
                 htmlContainer.InnerHtml = sb.ToString();
 
             }
+        }
+
+        public string DeleteLink(int id)
+        {
+            LuceneSearcher searcher = new LuceneSearcher(new SearchQuery());
+           
+            return !searcher.DocIsIndexed(id)
+                ?
+                string.Empty
+                :
+                string.Format("<a href='deletedocument.aspx?id={0}'>[delete]</a>", id);
+
+        }
+
+        public string IndexLink(int id)
+        {
+            LuceneSearcher searcher = new LuceneSearcher(new SearchQuery());
+
+            return searcher.DocIsIndexed(id)
+                ? 
+                string.Empty 
+                : 
+                string.Format("<a href='indexdocument.aspx?id={0}'>[index]</a>", id);
+        }
+
+        public string ViewLink(int id)
+        {
+            return string.Format("<a href='viewdocument.aspx?id={0}'>[view]</a>", id);
         }
     }
 }

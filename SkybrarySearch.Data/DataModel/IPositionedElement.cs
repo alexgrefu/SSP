@@ -9,5 +9,6 @@ namespace SkybrarySearch.Data
     {
         int PositionInContent { get; set; }
         int Length { get; }
+        int TextLenght { get;  }
     }
 }

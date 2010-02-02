@@ -12,7 +12,7 @@ namespace SkybrarySearchPrototype
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            HibernatingRhinos.Profiler.Appender.EntityFramework.EntityFrameworkProfiler.Initialize();
+            //HibernatingRhinos.Profiler.Appender.EntityFramework.EntityFrameworkProfiler.Initialize();
         }
 
         protected void Session_Start(object sender, EventArgs e)

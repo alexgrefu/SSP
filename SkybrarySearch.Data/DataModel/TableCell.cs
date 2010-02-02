@@ -14,5 +14,13 @@ namespace SkybrarySearch.Data
             
             return Content.ToHTML();
         }
+
+        public string ToSearchIndex()
+        {
+            if (!ContentReference.IsLoaded)
+                ContentReference.Load();
+
+            return Content.ToSearchIndex();
+        }
     }
 }

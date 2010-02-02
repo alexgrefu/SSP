@@ -20,6 +20,14 @@ namespace SkybrarySearch.Data
             return sb.ToString();
         }
 
+        public string ToSearchIndex()
+        {
+            if (!ContentReference.IsLoaded)
+                ContentReference.Load();
+
+            return Term + "\n" + Content.ToSearchIndex();
+        }
+
         #region IPositionedElement Members
 
         public int PositionInContent { get; set; }
@@ -27,6 +35,11 @@ namespace SkybrarySearch.Data
         public int Length
         {
             get { return ToHTML().Length; }
+        }
+
+        public int TextLenght
+        {
+            get { return ToSearchIndex().Length; }
         }
 
         #endregion

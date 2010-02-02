@@ -8,6 +8,21 @@ namespace SkybrarySearch.Data
 {
     public partial class Paragraph
     {
+
+        public bool HasContent()
+        {
+            bool hasContent = false;
+
+            if (!ContentReference.IsLoaded)
+                ContentReference.Load();
+            if (Content.Text.Trim().Length > 0)
+                hasContent = true;
+            if (Content.HasNotes || Content.HasImages || Content.HasTables)
+                hasContent = true;
+
+            return hasContent;
+        }
+
         public string ToHTML()
         {
             if (!ContentReference.IsLoaded)
@@ -27,6 +42,16 @@ namespace SkybrarySearch.Data
             sb.Append("<div>");
             sb.Append(Content.ToHTML());
             sb.Append("</div>");
+
+            return sb.ToString();
+        }
+
+
+        public string ToSearchIndex()
+        {
+            var sb = new StringBuilder();
+            sb.Append(Number + " " + Title + "\n");
+            sb.Append(Content.ToSearchIndex());
 
             return sb.ToString();
         }

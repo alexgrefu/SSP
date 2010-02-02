@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkybrarySearchPrototype", "SkybrarySearchPrototype\SkybrarySearchPrototype.csproj", "{9814016B-A58A-43A8-9495-038AB916097E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkybrarySearch.Web", "SkybrarySearchPrototype\SkybrarySearch.Web.csproj", "{9814016B-A58A-43A8-9495-038AB916097E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkybrarySearch.Data", "SkybrarySearch.Data\SkybrarySearch.Data.csproj", "{B9D9B4C0-7AE7-459A-AA2E-A50670FCAF75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkybrarySearch.Core", "SkybrarySearch.Core\SkybrarySearch.Core.csproj", "{632A4F89-9A98-4842-B984-4405A425E416}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		{B9D9B4C0-7AE7-459A-AA2E-A50670FCAF75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9D9B4C0-7AE7-459A-AA2E-A50670FCAF75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9D9B4C0-7AE7-459A-AA2E-A50670FCAF75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{632A4F89-9A98-4842-B984-4405A425E416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{632A4F89-9A98-4842-B984-4405A425E416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{632A4F89-9A98-4842-B984-4405A425E416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{632A4F89-9A98-4842-B984-4405A425E416}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

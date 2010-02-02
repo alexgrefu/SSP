@@ -50,8 +50,8 @@
         return t;
     }
     
-    var actualFilterList = new Array();
-    var userFilterList = new Array();
+    var actualFilterList = new Array();  // array used to hold the ids used the search filter
+    var userFilterList = new Array();    // array used to hold the filters for displaying to the user
     $(document).ready(function() {
         $('#lnkDocuments').easyTooltip({
         useElement: "tooltipItem"
@@ -67,18 +67,30 @@
         var childCount = node.get_nodes().get_count();
 
         //alert(childCount);
-
+        
+        // if the node is a group level node
         if (level == 0) {
+            // if a user has checked this group level node
             if (checked) {
+                // convention is the only group that has no child nodes
+                // and the group holds the actual document name and filter id
                 if (node.get_text() != "Convention on International Civil Aviation") {
-
+                    // get a list of all child nodes
                     var nodes = node.get_nodes();
+                    
                     for (x = 0; x < childCount; x++) {
-
+                        // verify that this node isn't in the filter list already
+                        // very unlikely but a check is made to ensure that
                         var idx = userFilterList.getIndex(nodes.getNode(x).get_text());
+                        // the value is not in the list
                         if (idx == -1) {
-                        
+
+                            // add the short name version of the documents to a filters list
+                            // array. this is a friendly list for display purpose
                             userFilterList.push(nodes.getNode(x).get_text());
+                            // a short name document may be formed by more than one documents
+                            // in the database. We now get all the ids and save them in a filter list
+                            // that will be used programatically
                             var items = GetDocuments(nodes.getNode(x));
                             while (items.length > 0) {
                                 actualFilterList.push(items.pop());
@@ -86,36 +98,42 @@
                         }
                     }
                 }
+                // it's the convention group: only one document in group
+                // TODO: find a better way to treat this
                 else {
-                    actualFilterList.push(node.get_text());
+                    actualFilterList.push(node.get_attributes().getAttribute("filter"));
                     userFilterList.push(node.get_text());
                 }
             }
+            // if a user has unchecked a group level node
             else {
+                // convention is the only group that has no child nodes
+                // and the group holds the actual document name and filter id
                 if (node.get_text() != "Convention on International Civil Aviation") {
+                    // get all child nodes
                     var nodes = node.get_nodes();
                     for (x = 0; x < childCount; x++) {
 
                         var idx = userFilterList.getIndex(nodes.getNode(x).get_text());
+                        // remove the node from the user display filter list
                         userFilterList.splice(idx, 1);
+                        // get an actual filter list of ids
                         var items = GetDocuments(nodes.getNode(x));
                         while (items.length > 0) {
                             var index = actualFilterList.getIndex(items.pop());
-
                             actualFilterList.splice(index, 1);
-
-
                         }
                     }
                 }
                 else {
-                    var index = actualFilterList.getIndex(node.get_text());
+                    var index = actualFilterList.getIndex(node.get_attributes().getAttribute("filter"));
                     var idx = userFilterList.getIndex(node.get_text());
                     actualFilterList.splice(index, 1);
                     userFilterList.splice(idx, 1);
                 }
             }
         }
+        // if its a document node (bellow a grouped document)
         else if (level == 1) {
             if (checked) {
                 userFilterList.push(node.get_text());

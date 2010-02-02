@@ -5,4 +5,5 @@ Logs
 *.suo
 *.resharper.user
 *.csproj.user
+*.db
 

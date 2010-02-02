@@ -65,8 +65,34 @@
     <p runat="server" id="filterText"></p>
 </div>
     
-
-<act:Accordion ID="accSearchResults" runat="server" TransitionDuration="1" >
+    <asp:ListView ID="lvSearchResults" runat="server">
+        <LayoutTemplate>
+            <asp:PlaceHolder ID="itemPlaceHolder" runat="server"></asp:PlaceHolder>
+            
+        </LayoutTemplate>
+        <ItemTemplate>
+            <div>
+                <h3 class="document-header"><%# Eval("Document") %> (score: <%# Eval("Score") %>)</h3>
+                
+                <div style="border-bottom:dashed 1px green;">
+                    <p style="margin-top:0px;">
+                        <span id="P1" runat="server" visible='<%# Eval("Type").ToString() == "paragraph" ? true : false %>'>
+                            <b><%# Eval("Chapter") %></b>
+                        </span>
+                        <br />
+                        <a href='javascript:ShowDialog(<%# Eval("Id") %>, "<%# Eval("Type") %>")'><b><%# Eval("Title") %></b></a>
+                    </p>
+                    <p>
+                        <%# Eval("Content") %>
+                    </p>
+                    <p><a href='javascript:ShowDialog(<%# Eval("Id") %>, "<%# Eval("Type") %>")'>[quick view]</a> <a href='documentview.aspx?id=<%# Eval("Id") %>&type=<%# Eval("Type") %>'>[in document view]</a></p>
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:ListView>    
+    <div runat="server" id="pager">
+    </div>
+<%--<act:Accordion ID="accSearchResults" runat="server" TransitionDuration="1" >
 <HeaderTemplate >
     <div class="search-result-header">
         <img src="Assets/Images/doc_down.png" />
@@ -99,7 +125,7 @@
     </div>   
     
 </ContentTemplate>
-</act:Accordion>
+</act:Accordion>--%>
 
 <div runat="server" id="tooltipItem">  
     

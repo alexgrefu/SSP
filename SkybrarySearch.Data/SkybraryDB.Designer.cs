@@ -23,7 +23,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SkyModel", "fk_table_cell_table_id", "Table", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SkybrarySearch.Data.Table), "TableCell", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SkybrarySearch.Data.TableCell))]
 
 // Original file name:
-// Generation date: 14.12.2009 15:14:25
+// Generation date: 29.01.2010 12:41:21
 namespace SkybrarySearch.Data
 {
     
